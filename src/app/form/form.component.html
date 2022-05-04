@@ -1,0 +1,144 @@
+
+<div
+  class="container"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+>
+  <h1
+    class="md-10 ml-10"
+    style="
+      margin-left: 300px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      width: 100%;
+    "
+  >
+    Student Scholarship Registration Form
+  </h1>
+
+  <h2>First Page</h2>
+  <form
+    [formGroup]="studentform"
+    (ngSubmit)="onSubmit()"
+    style="
+      margin-left: 300px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      width: 100%;
+    "
+  >
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Name:</legend>
+      <div class="col-6 clearfix">
+        <div class="form-group">
+          <label>First Name</label>
+          <input
+            required
+            formControlName="firstName"
+            type="text"
+            class="form-control"
+            placeholder="Enter First Name"
+            [ngClass]="{
+              'is-invalid': submitted && f['firstName'].errors,
+              'is-valid': !f['firstName'].errors
+            }"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['firstName'].errors"
+          >
+            <div *ngIf="f['firstName'].errors['required']">
+              Please Enter First Name
+            </div>
+            <div *ngIf="f['firstName'].errors['pattern']">
+              Name cant be numbers
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>Last Name</label>
+          <input
+            required
+            type="text"
+            class="form-control"
+            placeholder="Enter Middle Name"
+          />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>Last Name</label>
+          <input
+            required
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+            placeholder="Enter Last Name"
+            [ngClass]="{
+              'is-invalid': submitted && f['lastName'].errors,
+              'is-valid': !f['lastName'].errors
+            }"
+          />
+          <div class="invalid-feedback" *ngIf="f['lastName'].errors">
+            <div *ngIf="f['lastName'].errors['required']">
+              Please Enter lastName
+            </div>
+            <div *ngIf="f['lastName'].errors['pattern']">
+              Name cant be numbers
+            </div>
+          </div>
+
+          <div class="invalid-feedback" *ngIf="f['lastName'].errors">
+            <div *ngIf="f['lastName'].errors['required']">
+              Please Enter lastName
+            </div>
+            <div *ngIf="f['lastName'].errors['pattern']">
+              Name cant be numbers
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <br /><br />
+
+    <!--button to next page-->
+    <div class="container" *ngIf="this.studentform.valid">
+      <button
+        [disabled]="isLoading"
+        *ngIf="checked1"
+        style="margin-left: 100px"
+        (click)="onSubmit()"
+        class="btn btn-primary ml-5"
+
+      >
+        <i
+          class="fa fa-spinner fa-spin"
+          aria-hidden="true"
+          *ngIf="isLoading == true"
+        ></i
+        >Next
+      </button>
+      <button
+        type="reset"
+        class="btn btn-danger ml-5 mr-5"
+        (click)="clearForm()"
+        style="margin-left: 10px; margin-right: 10px"
+      >
+        <i class="fa-solid fa-rotate"></i>Clear
+      </button>
+    </div>
+  </form>
+
+  <router-outlet *ngIf="this.studentform.valid && checked2">
+    <app-form2></app-form2>
+  </router-outlet>
+<router-outlet></router-outlet>
+
+</div>
