@@ -3,17 +3,28 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 
 @Component({
-  selector: 'app-form3',
-  templateUrl: './form3.component.html',
-  styleUrls: ['./form3.component.css']
+  selector: 'app-form5',
+  templateUrl: './form5.component.html',
+  styleUrls: ['./form5.component.css']
 })
-export class Form3Component implements OnInit {
+export class Form5Component implements OnInit {
+
+  get f() {
+    return this.studentform.controls;
+    // return this.studentForm1.controls;
+  }
+
+  constructor(private formBuilder: FormBuilder) {}
 
   studentform !: FormGroup;
 
   submitted = false;
   isLoading = false;
   checked2 = false;
+  checked1 = true;
+  orderStatus: any;
+  orderStatusObs!: Observable<any>;
+  subcription!: Subscription;
 
   /* material form*/
   checked = false;
@@ -22,18 +33,8 @@ export class Form3Component implements OnInit {
   disabled = false;
   /**/
 
-  checked1 = true;
-  orderStatus: any;
-  orderStatusObs!: Observable<any>;
-  subcription!: Subscription;
+  // checked1 = true;
 
-  get f() {
-    return this.studentform.controls;
-    // return this.studentForm1.controls;
-  }
-
-  constructor(private formBuilder: FormBuilder) {
-  }
 
   ngOnInit(): void {
     this.initForm();
@@ -44,18 +45,26 @@ export class Form3Component implements OnInit {
   initForm(): void {
     this.studentform = this.formBuilder.group(
       {
-        email: [
+        where: [
           '',
           // tslint:disable-next-line:max-line-length
-          [Validators.required, Validators.pattern('(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])')]
+          [Validators.required]
+          // tslint:disable-next-line:only-arrow-functions]
         ],
-        officephone: [
+        linkedin: [
           '',
-          [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]
+          // tslint:disable-next-line:max-line-length
+          [Validators.required, Validators.pattern('@^(http\\:\\/\\/|https\\:\\/\\/)?([a-z0-9][a-z0-9\\-]*\\.)+[a-z0-9][a-z0-9\\-]*$@i')]
         ],
-        homephone: [
+        github: [
           '',
-          [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]
+          // tslint:disable-next-line:max-line-length
+          [Validators.required, Validators.pattern('@^(http\\:\\/\\/|https\\:\\/\\/)?([a-z0-9][a-z0-9\\-]*\\.)+[a-z0-9][a-z0-9\\-]*$@i')]
+        ],
+
+        future: [
+          '',
+          [Validators.required, Validators.maxLength(300)]
         ]
 
         /*
@@ -95,16 +104,13 @@ export class Form3Component implements OnInit {
     if (this.studentform.valid) {
 
       this.isLoading = true;
-      alert('form 3 successfull');
+      alert('form 5 successfull');
       // avoiding redudancy data insertion
       setTimeout(() => {
-        console.log('Response');
         this.checked1 = false;
         this.isLoading = false;
         this.checked2 = true;
-      }, 1000);
-      console.log();
-
+      }, 3000);
     }
   }
 
@@ -113,6 +119,7 @@ export class Form3Component implements OnInit {
     this.submitted = false;
     this.studentform.reset();
   }
+
 
 
 }

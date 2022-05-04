@@ -8,6 +8,7 @@ import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Form2Component } from './form2/form2.component';
 import { Form3Component } from './form3/form3.component';
 import { Form4Component } from './form4/form4.component';
+import { Form5Component } from './form5/form5.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { Form4Component } from './form4/form4.component';
     FormComponent,
     Form2Component,
     Form3Component,
-    Form4Component
+    Form4Component,
+    Form5Component
   ],
   imports: [
     BrowserModule,

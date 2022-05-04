@@ -128,6 +128,10 @@
     </div>
   </form>
 
+  <div *ngIf="this.studentform.valid && checked2" class="alert alert-primary" role="alert">
+    {{orderStatus}}
+  </div>
+
   <router-outlet *ngIf="checked2 && this.studentform.valid">
     <app-form3></app-form3>
   </router-outlet>

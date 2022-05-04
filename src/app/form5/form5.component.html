@@ -1,0 +1,163 @@
+<div
+  class="container"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html">
+  <h2>Fifth Page</h2>
+  <form
+    [formGroup]="studentform"
+    (ngSubmit)="onSubmit()"
+    style="
+      margin-left: 300px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      width: 100%;
+    "
+  >
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border"></legend>
+      <div class="col-6 clearfix">
+        <label>Where did you find this scholarship</label>
+        <div class="form-group">
+          <!-- Default inline 1-->
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input ng-click="uncheck($event)" name="where" formControlName="where" type="checkbox" [ngClass]="{
+              'is-invalid': submitted && f['where'].errors,
+              'is-valid': !f['where'].errors
+            }" class="custom-control-input"  name="where">
+            <label class="custom-control-label" >Linkedin</label>
+          </div>
+
+          <!-- Default inline 2-->
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input
+              ng-click="uncheck($event)" name="where" formControlName="where" type="checkbox"
+              class="custom-control-input"
+              [ngClass]="{
+              'is-invalid': submitted && f['where'].errors,
+              'is-valid': !f['where'].errors
+            }" name="where">
+            <label class="custom-control-label">FaceBook</label>
+          </div>
+
+          <div class="custom-control custom-checkbox custom-control-inline">
+            <input
+              ng-click="uncheck($event)" name="where" formControlName="where" type="checkbox"
+              class="custom-control-input"
+              [ngClass]="{
+              'is-invalid': submitted && f['where'].errors,
+              'is-valid': !f['where'].errors
+            }" name="where">
+            <label class="custom-control-label">other</label>
+          </div>
+
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['where'].errors"
+          >
+            <div *ngIf="f['where'].errors['required']">
+              Please select where u find it!
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-6">
+        <div class="form-group">
+          <label>LinkedIn Address</label>
+          <input ng-click="uncheck($event)" name="linkedin" formControlName="linkedin" type="text" [ngClass]="{
+              'is-invalid': submitted && f['linkedin'].errors,
+              'is-valid': !f['linkedin'].errors
+            }" class="custom-control-input"  name="linkedin">
+
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['linkedin'].errors"
+          >
+            <div *ngIf="f['linkedin'].errors['required']">
+              Please Enter your method
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>GitHub Address</label>
+          <input ng-click="uncheck($event)" name="github" formControlName="github" type="text" [ngClass]="{
+              'is-invalid': submitted && f['github'].errors,
+              'is-valid': !f['github'].errors
+            }" class="custom-control-input"  name="github">
+
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['github'].errors"
+          >
+            <div *ngIf="f['github'].errors['required']">
+              Please Enter your github
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <br>
+      <div class="col-6">
+        <div class="form-group">
+          <label>What is your future Plans</label>
+          <textarea
+            name="future"
+            formControlName="future"
+            type="text"
+            class="form-control"
+            placeholder="Enter your future plans"
+            [ngClass]="{
+              'is-invalid': submitted && f['future'].errors,
+              'is-valid': !f['future'].errors
+            }"
+          ></textarea>
+
+          <div class="invalid-feedback" *ngIf="f['future'].errors">
+            <div *ngIf="f['future'].errors['required']">
+              Please Enter your plan less than 250 words.
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </fieldset>
+    <br/><br/>
+
+    <!--button to next page-->
+    <div class="container">
+      <button *ngIf="checked1"
+              [disabled]="isLoading"
+              style="margin-left: 100px"
+              (click)="onSubmit()"
+              class="btn btn-primary ml-5"
+      >
+        <i
+          class="fa fa-spinner fa-spin"
+          aria-hidden="true"
+          *ngIf="isLoading == true"
+        ></i
+        >Next
+      </button>
+      <button
+        type="reset"
+        class="btn btn-danger ml-5 mr-5"
+        (click)="clearForm()"
+        style="margin-left: 10px; margin-right: 10px"
+      >
+        <i class="fa-solid fa-rotate"></i>Clear
+      </button>
+    </div>
+  </form>
+  <div class="alert alert-info" role="alert" *ngIf="checked2 && this.studentform.valid">
+    Your Application is Successfully submitted!
+  </div>
+</div>

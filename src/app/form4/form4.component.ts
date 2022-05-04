@@ -2,6 +2,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-form4',
@@ -23,6 +24,10 @@ export class Form4Component implements OnInit {
   submitted = false;
   isLoading = false;
   checked2 = false;
+  checked1 = true;
+  orderStatus: any;
+  orderStatusObs!: Observable<any>;
+  subcription!: Subscription;
 
   /* material form*/
   checked = false;
@@ -31,7 +36,7 @@ export class Form4Component implements OnInit {
   disabled = false;
   /**/
 
-  checked1 = true;
+  // checked1 = true;
 
 
   ngOnInit(): void {
@@ -61,6 +66,10 @@ export class Form4Component implements OnInit {
           '',
           [Validators.required]
         ],
+        country: [
+          '',
+          [Validators.required ]
+        ]
 
         /*
         dob: ['', [Validators.required]],
@@ -73,6 +82,26 @@ export class Form4Component implements OnInit {
       },
     );
   }
+
+  initOrderStatus() {
+    this.orderStatusObs = new Observable((observer) => {
+      setTimeout(() => {
+        observer.next('in progress');
+      }, 1000);
+      setTimeout(() => {
+        observer.next('processing!');
+      }, 2000);
+      setTimeout(() => {
+        observer.next('completed!');
+      }, 3000);
+    });
+
+    this.subcription = this.orderStatusObs.subscribe((value: any) => {
+      this.orderStatus = value;
+    });
+  }
+
+
   onSubmit(): void {
     this.submitted = true;
 
@@ -82,7 +111,6 @@ export class Form4Component implements OnInit {
       alert('form 3 successfull');
       // avoiding redudancy data insertion
       setTimeout(() => {
-        console.log('Response');
         this.checked1 = false;
         this.isLoading = false;
         this.checked2 = true;

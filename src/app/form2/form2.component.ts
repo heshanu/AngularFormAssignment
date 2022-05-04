@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-form2',
@@ -7,6 +8,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./form2.component.css']
 })
 export class Form2Component implements OnInit {
+
+  get f() {
+    return this.studentform.controls;
+    // return this.studentForm1.controls;
+  }
+
+  constructor(private formBuilder: FormBuilder) {
+  }
 
   studentform !: FormGroup;
 
@@ -23,16 +32,14 @@ export class Form2Component implements OnInit {
 
   checked1 = true;
 
-  get f() {
-    return this.studentform.controls;
-    // return this.studentForm1.controls;
-  }
-
-  constructor(private formBuilder: FormBuilder) {
-  }
+  // observer part
+  orderStatus: any;
+  orderStatusObs!: Observable<any>;
+  subcription!: Subscription;
 
   ngOnInit(): void {
     this.initForm();
+    this.initOrderStatus();
   }
 
 
@@ -62,6 +69,24 @@ export class Form2Component implements OnInit {
      */
       },
     );
+  }
+
+  initOrderStatus() {
+    this.orderStatusObs = new Observable((observer) => {
+      setTimeout(() => {
+        observer.next('in progress');
+      }, 1000);
+      setTimeout(() => {
+        observer.next('processing!');
+      }, 2000);
+      setTimeout(() => {
+        observer.next('completed!');
+      }, 3000);
+    });
+
+    this.subcription = this.orderStatusObs.subscribe((value: any) => {
+      this.orderStatus = value;
+    });
   }
 
   onSubmit(): void {
