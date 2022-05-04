@@ -1,0 +1,167 @@
+<div
+  class="container"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+>
+  <h2>Third Page</h2>
+  <form
+    [formGroup]="studentform"
+    (ngSubmit)="onSubmit()"
+    style="
+      margin-left: 300px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      width: 100%;
+    "
+  >
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border"></legend>
+      <div class="col-6 clearfix">
+        <label>Gender</label>
+        <div class="form-group">
+          <!-- Default inline 1-->
+          <div class="custom-control custom-radio custom-control-inline">
+            <input  ng-click="uncheck($event)"   formControlName="gender" type="radio" [ngClass]="{
+              'is-invalid': submitted && f['gender'].errors,
+              'is-valid': !f['gender'].errors
+            }" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+            <label class="custom-control-label" for="defaultInline1">Male</label>
+          </div>
+
+          <!-- Default inline 2-->
+          <div class="custom-control custom-radio custom-control-inline">
+            <input
+              ng-click="uncheck($event)"    formControlName="gender" type="radio" class="custom-control-input"
+              [ngClass]="{
+              'is-invalid': submitted && f['gender'].errors,
+              'is-valid': !f['gender'].errors
+            }"  id="defaultInline2" name="inlineDefaultRadiosExample">
+            <label class="custom-control-label" for="defaultInline2">Female</label>
+          </div>
+
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['gender'].errors"
+          >
+            <div *ngIf="f['gender'].errors['required']">
+              Please Select Gender
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>Office Contact no</label>
+          <select
+            [ngClass]="{
+              'is-invalid': submitted && f['qualification'].errors,
+              'is-valid': !f['qualification'].errors
+            }"
+            formControlName="qualification">
+            <option>---</option>
+            <option>O/L</option>
+            <option>A/L</option>
+            <option>undergradute</option>
+            <option>gradute</option>
+          </select>
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['qualification'].errors"
+          >
+            <div *ngIf="f['qualification'].errors['required']">
+              Please select the Qulaification
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label>Why do you need this scholarship</label>
+          <textarea
+            formControlName="want"
+            type="text"
+            class="form-control"
+            placeholder="Enter your necessity for this scholarship"
+            [ngClass]="{
+              'is-invalid': submitted && f['want'].errors,
+              'is-valid': !f['want'].errors
+            }"
+          ></textarea>
+
+          <div class="invalid-feedback" *ngIf="f['want'].errors">
+            <div *ngIf="f['want'].errors['required']">
+              Please Enter office phone
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <label>Gender</label>
+      <div class="form-group">
+        <!-- Default inline 1-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input  ng-click="uncheck($event)"   formControlName="gender" type="radio" [ngClass]="{
+              'is-invalid': submitted && f['gender'].errors,
+              'is-valid': !f['gender'].errors
+            }" class="custom-control-input"  name="inlineDefaultRadiosExample">
+          <label class="custom-control-label" for="defaultInline1">Male</label>
+        </div>
+
+        <!-- Default inline 2-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input
+            ng-click="uncheck($event)"    formControlName="gender" type="radio" class="custom-control-input"
+            [ngClass]="{
+              'is-invalid': submitted && f['gender'].errors,
+              'is-valid': !f['gender'].errors
+            }"   name="inlineDefaultRadiosExample">
+          <label class="custom-control-label" for="defaultInline2">Female</label>
+        </div>
+
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && f['gender'].errors"
+        >
+          <div *ngIf="f['gender'].errors['required']">
+            Please Select Gender
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <br /><br />
+
+    <!--button to next page-->
+    <div class="container" >
+      <button *ngIf="checked1"
+              [disabled]="isLoading"
+              style="margin-left: 100px"
+              (click)="onSubmit()"
+              class="btn btn-primary ml-5"
+      >
+        <i
+          class="fa fa-spinner fa-spin"
+          aria-hidden="true"
+          *ngIf="isLoading == true"
+        ></i
+        >Next
+      </button>
+      <button
+        type="reset"
+        class="btn btn-danger ml-5 mr-5"
+        (click)="clearForm()"
+        style="margin-left: 10px; margin-right: 10px"
+      >
+        <i class="fa-solid fa-rotate"></i>Clear
+      </button>
+    </div>
+  </form>
+
+  <router-outlet *ngIf="checked2 && this.studentform.valid">
+    <app-form4></app-form4>
+  </router-outlet>
+</div>

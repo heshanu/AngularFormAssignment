@@ -1,12 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+// @ts-ignore
+
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-form3',
-  templateUrl: './form3.component.html',
-  styleUrls: ['./form3.component.css']
+  selector: 'app-form4',
+  templateUrl: './form4.component.html',
+  styleUrls: ['./form4.component.css']
 })
-export class Form3Component implements OnInit {
+export class Form4Component implements OnInit {
+
+  get f() {
+    return this.studentform.controls;
+    // return this.studentForm1.controls;
+  }
+
+  constructor(private formBuilder: FormBuilder) {
+  }
 
   studentform !: FormGroup;
 
@@ -23,13 +33,6 @@ export class Form3Component implements OnInit {
 
   checked1 = true;
 
-  get f() {
-    return this.studentform.controls;
-    // return this.studentForm1.controls;
-  }
-
-  constructor(private formBuilder: FormBuilder) {
-  }
 
   ngOnInit(): void {
     this.initForm();
@@ -39,19 +42,25 @@ export class Form3Component implements OnInit {
   initForm(): void {
     this.studentform = this.formBuilder.group(
       {
-        email: [
+        gender: [
           '',
           // tslint:disable-next-line:max-line-length
-          [Validators.required, Validators.pattern('(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])')]
+          [Validators.required]
+          // tslint:disable-next-line:only-arrow-functions]
         ],
-        officephone: [
+        qualification: [
           '',
-          [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]
+          [Validators.required]
         ],
-        homephone: [
+        want: [
           '',
-          [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]
-        ]
+          [Validators.required, Validators.maxLength(500)]
+        ],
+
+        ethnicity: [
+          '',
+          [Validators.required]
+        ],
 
         /*
         dob: ['', [Validators.required]],
@@ -64,7 +73,6 @@ export class Form3Component implements OnInit {
       },
     );
   }
-
   onSubmit(): void {
     this.submitted = true;
 
@@ -80,7 +88,6 @@ export class Form3Component implements OnInit {
         this.checked2 = true;
       }, 1000);
       console.log();
-
     }
   }
 
