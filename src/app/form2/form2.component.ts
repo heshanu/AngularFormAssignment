@@ -48,7 +48,7 @@ export class Form2Component implements OnInit {
       {
         address: [
           '',
-          [Validators.required, Validators.pattern('[A-Za-z]{4,15}$')]
+          [Validators.required, Validators.pattern('/^[A-Za-z0-9\'\\.\\-\\s\\,:\\/]$/')]
         ],
         city: [
           '',
