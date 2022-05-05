@@ -74,6 +74,12 @@ export class FormComponent implements OnInit {
           '',
           [Validators.required, Validators.pattern('[A-Za-z]{4,15}$')],
         ],
+        invoiceDate: [
+          '',
+          [Validators.required]
+        ]
+
+
         /*
         dob: ['', [Validators.required]],
         contactNo: ['', [Validators.required, Validators.pattern('/^(\\+\\d{1,3}[- ]?)?\\d{10}$/')]],
