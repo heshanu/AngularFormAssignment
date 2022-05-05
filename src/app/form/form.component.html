@@ -105,28 +105,30 @@
           </div>
         </div>
       </div>
-    </fieldset>
-    <br /><br />
-
-    <div class="col-md-3">
-      <div class="form-group">
-        <label>Invoice Date</label>
-        <input type="date" [ngClass]="{
+      <br><br>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Invoice Date</label>
+          <input type="date" [ngClass]="{
             'is-invalid': submitted && f['invoiceDate'].errors,
             'is-valid': !f['invoiceDate'].errors
           }" formControlName="invoiceDate" class="form-control"
-               placeholder="Enter Invoice Date">
-        <div
-          class="invalid-feedback"
-          *ngIf="submitted && f['invoiceDate'].errors"
-        >
-          <div *ngIf="f['invoiceDate'].errors['required']">
-            Please Enter Valid Date
-          </div>
+                 placeholder="Enter Invoice Date">
+          <div
+            class="invalid-feedback"
+            *ngIf="submitted && f['invoiceDate'].errors"
+          >
+            <div *ngIf="f['invoiceDate'].errors['required']">
+              Please Enter Valid Date
+            </div>
 
+          </div>
         </div>
       </div>
-    </div>
+    </fieldset>
+    <br /><br />
+
+
 
     <!--button to next page-->
     <div class="container" *ngIf="this.studentform.valid">
