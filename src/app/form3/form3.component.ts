@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
+import { mustMatchPhoneNumber} from '../validators/phone.validation';
 
 @Component({
   selector: 'app-form3',
@@ -55,8 +56,14 @@ export class Form3Component implements OnInit {
         ],
         homephone: [
           '',
-          [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$')]
+          [Validators.required, Validators.pattern('^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$'),
+            ,
+            {
+              validators: mustMatchPhoneNumber('officephone', 'homephone'),
+            }
+          ]
         ]
+
 
         /*
         dob: ['', [Validators.required]],
